@@ -1,0 +1,7 @@
+[user]
+	name = nickbazinet
+	email = nicolas.bazinet@hotmail.com
+[alias]
+	co = checkout
+	ci = commit
+	st = status
