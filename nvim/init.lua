@@ -215,6 +215,12 @@ require('lazy').setup({
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
+    opts = {
+      ensure_installed = {
+        "hcl",
+        "terraform",
+      },
+    },
     build = ':TSUpdate',
   },
 
@@ -503,6 +509,7 @@ require('which-key').register {
 require('mason').setup()
 require('mason-lspconfig').setup()
 
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -514,6 +521,7 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   -- gopls = {},
+  terraformls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
