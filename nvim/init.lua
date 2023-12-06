@@ -224,6 +224,12 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+    -- Auto-Save after writing
+    'pocco81/auto-save.nvim',
+    vim.api.nvim_set_keymap("n", "<leader>n", ":ASToggle<CR>", {})
+  },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -251,6 +257,9 @@ vim.wo.number = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
+
+-- Enable Relative Line Number
+vim.o.relativenumber = true
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.

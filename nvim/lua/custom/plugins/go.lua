@@ -6,7 +6,7 @@ local M = {
   ft = { "go", "gomod" },
   build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   config = function()
-    local icons = require("custom.utils.icons")
+    -- local icons = require("custom.utils.icons") disable for now until fixed the icons rectangle issue
     require("go").setup({
       -- NOTE: all LSP and formatting related options are disabeld.
       -- NOTE: is not related to core.plugins.lsp
