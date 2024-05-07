@@ -95,6 +95,14 @@ require('lazy').setup({
     },
   },
 
+  -- Plugin for Auto closing brackets
+  {
+    'altermo/ultimate-autopair.nvim',
+    event={'InsertEnter','CmdlineEnter'},
+    opts={
+    },
+  },
+
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -221,6 +229,8 @@ require('lazy').setup({
         "terraform",
         "go",
         "python",
+        "html",
+        "htmx",
       },
     },
     build = ':TSUpdate',
@@ -532,14 +542,12 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   gopls = {},
-  terraformls = {},
-  pyright = {
-  },
-
+  terraformls = { "tf", "tfvars" },
+  pyright = {},
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
