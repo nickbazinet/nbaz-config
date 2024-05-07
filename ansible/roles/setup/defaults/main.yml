@@ -1,0 +1,5 @@
+---
+# Default lower priority variables for this role
+motd_message: "Welcome Home!"
+home_directory: "~/"
+

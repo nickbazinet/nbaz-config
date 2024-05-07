@@ -1,0 +1,21 @@
+---
+- name: Copy dynamic motd template
+  template:
+    src: motd.j2
+    dest: /etc/motd
+  become: yes
+
+- name: Copy Custom Configuration file
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  become: true
+  become_user: "{{ linux_user }}"
+  loop:
+    - { src: 'gitconfig.j2', dest: '~/.gitconfig' }
+    - { src: 'bashrc.j2', dest: '~/.bashrc' }
+    - { src: 'tmux.conf.j2', dest: '~/.tmux.conf' }
+    - { src: 'tmux.conf.local.j2', dest: '~/.tmux.conf.local' }
+
+  
+

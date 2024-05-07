@@ -1,0 +1,7 @@
+---
+
+- name: Configure Dynamic motd
+  hosts: localhost
+  become: yes
+  roles:
+    - setup
