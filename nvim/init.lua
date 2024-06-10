@@ -95,12 +95,14 @@ require('lazy').setup({
     },
   },
 
-  -- Plugin for Auto closing brackets
   {
-    'altermo/ultimate-autopair.nvim',
-    event={'InsertEnter','CmdlineEnter'},
-    opts={
-    },
+    "mg979/vim-visual-multi",
+    branch = "master",
+    init = function()
+      vim.g.VM_maps = {
+        ["Find Under"] = "<C-n>"
+      }
+    end,
   },
 
   {
@@ -109,14 +111,20 @@ require('lazy').setup({
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      'saadparwaiz1/cmp_luasnip', 
 
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
+      -- Adds LSP completion capabilities 
+      'hrsh7th/cmp-nvim-lsp', 
 
-      -- Adds a number of user-friendly snippets
+      -- Adds a number of user-friendly snippets 
       'rafamadriz/friendly-snippets',
-    },
+    }, 
+  }, 
+
+  { 
+    'altermo/ultimate-autopair.nvim', 
+    events={'InsertEnter','CmdlineEnter'},
+    opts={},
   },
 
   -- Useful plugin to show you pending keybinds.
@@ -166,6 +174,64 @@ require('lazy').setup({
     name = "catppuccin",
     priority = 1000,
     config = function()
+      require("catppuccin").setup({
+        flavour = "macchiato", -- latte, frappe, macchiato, mocha
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = true, -- disables setting the background color.
+        show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+        term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+        dim_inactive = {
+          enabled = false, -- dims the background color of inactive window
+          shade = "dark",
+          percentage = 0.15, -- percentage of the shade to apply to the inactive window
+        },
+        no_italic = false, -- Force no italic
+        no_bold = false, -- Force no bold
+        no_underline = false, -- Force no underline
+        styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+          comments = { "italic" }, -- Change the style of comments
+          conditionals = { "italic" },
+          loops = {},
+          functions = {},
+          keywords = {},
+          strings = {},
+          variables = {},
+          numbers = {},
+          booleans = {},
+          properties = {},
+          types = {},
+          operators = {},
+          -- miscs = {}, -- Uncomment to turn off hard-coded styles
+        },
+        color_overrides = {},
+        custom_highlights = {},
+        default_integrations = true,
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          nvimtree = true,
+          treesitter = true,
+          notify = false,
+          mini = {
+            enabled = true,
+            indentscope_color = "",
+          },
+          -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+        },
+      })
+      -- require("catppuccin").setup({
+      --   transparent_background = true, -- disables setting the background color.
+      --   show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+      --   term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+      --   dim_inactive = {
+      --     enabled = false, -- dims the background color of inactive window
+      --     shade = "dark",
+      --     percentage = 0.15, -- percentage of the shade to apply to the inactive window
+      --   },
+      -- })
       vim.cmd.colorscheme 'catppuccin-macchiato'
     end,
   },
@@ -229,8 +295,6 @@ require('lazy').setup({
         "terraform",
         "go",
         "python",
-        "html",
-        "htmx",
       },
     },
     build = ':TSUpdate',
@@ -307,6 +371,7 @@ vim.o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -327,6 +392,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
+
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -542,12 +608,14 @@ require('mason-lspconfig').setup()
 local servers = {
   -- clangd = {},
   gopls = {},
-  terraformls = { "tf", "tfvars" },
-  pyright = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
+  terraformls = {},
+  pyright = {
+},
+
 
   -- rust_analyzer = {},
   -- tsserver = {},
+  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
